@@ -11,124 +11,241 @@
 <meta property="og:url" content="https://py77.github.io/ruiqi.dev/">
 <meta property="og:locale" content="en_US">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>R</text></svg>">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: #0c0c11; color: #c0cce0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-size: 14px; line-height: 1.5; }
-  a { color: #a0c4ee; }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 60px 20px 40px; }
-  header { margin-bottom: 48px; }
-  header h1 { font-size: 20px; font-weight: 600; color: #e0e8f4; margin-bottom: 6px; }
-  header p { color: #8898b0; font-size: 13px; }
-  .tools { display: flex; flex-direction: column; gap: 1px; }
-  .tool { padding: 16px 0; border-bottom: 1px solid #2e3048; }
-  .tool:last-child { border-bottom: none; }
-  .tool-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px; }
-  .tool-name { font-family: 'JetBrains Mono', monospace; font-weight: 500; color: #e0e8f4; font-size: 13px; }
-  .tool-tag { font-size: 11px; color: #7888a0; }
-  .tool-desc { font-size: 12px; color: #a0b0c8; line-height: 1.6; }
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-  .t { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #90a0b8; padding: 2px 7px; border: 1px solid #384060; border-radius: 3px; }
-  footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid #2e3048; font-size: 12px; color: #7888a0; }
-  footer a { color: #a0b0c8; text-decoration: none; }
-  .socials { display: flex; gap: 14px; margin-top: 12px; }
-  .socials a { color: #7888a0; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; font-size: 12px; transition: color 0.2s; }
-  .socials a:hover { color: #a0c4ee; }
-  .socials svg { width: 16px; height: 16px; fill: currentColor; }
-  header .about { color: #8898b0; font-size: 12px; margin-top: 8px; line-height: 1.5; }
-  header .stat { color: #7888a0; font-family: 'JetBrains Mono', monospace; font-size: 11px; margin-top: 10px; }
-  @media (max-width: 500px) { .wrap { padding: 40px 16px 32px; } }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #0b0d10; color: #c8d1dc; font-family: 'IBM Plex Sans', sans-serif; }
+
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #1e2330; border-radius: 10px; }
+  ::-webkit-scrollbar-thumb:hover { background: #2a3040; }
+
+  .page { min-height: 100vh; }
+  .wrap {
+    color: #c8d1dc;
+    font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    line-height: 1.55;
+    padding: 40px 72px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #1e2330;
+    gap: 24px;
+  }
+  .brand { display: flex; align-items: baseline; gap: 14px; }
+  .brand .name { font-size: 15px; color: #f0f4fb; font-weight: 600; letter-spacing: -0.01em; }
+  .brand .hash { color: #4a5568; font-size: 12px; }
+
+  .contact { display: flex; gap: 8px; font-size: 12.5px; align-items: center; }
+  .contact a {
+    color: #a0c4ee;
+    text-decoration: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background .15s;
+    display: inline-flex;
+    align-items: center;
+  }
+  .contact a:hover { background: rgba(160, 196, 238, 0.10); color: #e0e8f4; }
+  .contact svg { vertical-align: -2px; margin-right: 6px; }
+
+  .tagline {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 30px;
+    color: #f0f4fb;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    white-space: pre-line;
+  }
+  .sub {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 13.5px;
+    color: #7f8a9b;
+    margin-bottom: 16px;
+    line-height: 1.65;
+  }
+  .tokens {
+    font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: #a0c4ee;
+    margin-bottom: 32px;
+    letter-spacing: 0.02em;
+  }
+
+  .section-label {
+    font-size: 10px;
+    color: #5a6578;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-label .rule { flex: 1; height: 1px; background: #1e2330; }
+
+  .tool {
+    padding: 16px 0;
+    border-bottom: 1px solid #1a1f2a;
+    transition: background .15s;
+  }
+  .tool:hover { background: linear-gradient(to right, rgba(160, 196, 238, 0.04), transparent); }
+  .tool-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px; flex-wrap: wrap; }
+  .tool-name { font-size: 14px; color: #f0f4fb; font-weight: 600; }
+  .tool-tag { font-size: 11px; color: #5a6578; }
+  .tool-desc {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 12.5px;
+    color: #9ba5b7;
+    line-height: 1.65;
+  }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .t {
+    font-size: 10px;
+    color: #7f8a9b;
+    padding: 2px 8px;
+    border: 1px solid #2a3040;
+    border-radius: 2px;
+  }
+
+  @media (max-width: 600px) {
+    .wrap { padding: 32px 20px; }
+    .tagline { font-size: 24px; }
+    .header { flex-direction: column; align-items: flex-start; gap: 14px; }
+    .contact { flex-wrap: wrap; }
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <h1>Ruiqi</h1>
-    <p>I build AI-powered tools for trading and financial analysis.</p>
-    <p class="about">Python / SQL automation for trading and structuring desks. AI-agent workflows for development. Based in Hong Kong.</p>
-    <p class="stat">27.1M tokens through Claude Code in the last 30 days</p>
-    <div class="socials">
-      <a href="https://www.linkedin.com/in/ruiqi-long-0590371b/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
-      <a href="https://github.com/py77/ruiqi.dev" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</a>
-    </div>
-  </header>
-
-  <div class="tools">
-    <div class="tool">
-      <div class="tool-head">
-        <span class="tool-name">Portfolio Manager</span>
-        <span class="tool-tag">trading & analysis</span>
+<div class="page">
+  <div class="wrap">
+    <header class="header">
+      <div class="brand">
+        <span class="name">ruiqi.long</span>
+        <span class="hash">~/ruiqi.dev</span>
       </div>
-      <div class="tool-desc">Real-time position tracking, P&L, and risk metrics. Auto-syncs from broker with batch reconciliation. Fundamental screening, open interest charting, and option picks — cross-referenced with automated option data analysis.</div>
-      <div class="tags"><span class="t">Live P&L</span><span class="t">Risk Metrics</span><span class="t">Auto-Sync</span><span class="t">Batch Reco</span><span class="t">Fundamentals</span><span class="t">OI Chart</span><span class="t">Option Pick</span></div>
-    </div>
-
-    <div class="tool">
-      <div class="tool-head">
-        <span class="tool-name">Equity Research</span>
-        <span class="tool-tag">investment memos</span>
+      <div class="contact">
+        <a href="https://www.linkedin.com/in/ruiqi-long-0590371b/" aria-label="LinkedIn" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
+        <a href="https://github.com/py77" aria-label="GitHub" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</a>
       </div>
-      <div class="tool-desc">Automated institutional-grade research. Bull/bear price targets, risk/reward analysis. 30+ tickers covered across US, EU, and HK markets.</div>
-      <div class="tags"><span class="t">Dual Scenarios</span><span class="t">Price Targets</span><span class="t">Multi-Market</span></div>
+    </header>
+
+    <div class="tagline">I build AI-powered tools for trading
+and financial analysis.</div>
+    <div class="sub">Python / SQL automation for trading and structuring desks. AI-agent workflows for development. Based in Hong Kong.</div>
+    <div class="tokens">37M tokens through Claude Code in the last 30 days</div>
+
+    <div class="section-label">
+      <span>// tools</span>
+      <span class="rule"></span>
+      <span>08</span>
     </div>
 
-    <div class="tool">
-      <div class="tool-head">
-        <span class="tool-name">Strategy Runner</span>
-        <span class="tool-tag">signals &amp; backtesting</span>
+    <div class="tools">
+      <div class="tool">
+        <div class="tool-head">
+          <span class="tool-name">[01] Portfolio Manager</span>
+          <span class="tool-tag">→ trading &amp; analysis</span>
+        </div>
+        <div class="tool-desc">Real-time position tracking, P&amp;L, and risk metrics. Auto-syncs from broker with batch reconciliation. Fundamental screening, open interest charting, and option picks — cross-referenced with automated option data analysis.</div>
+        <div class="tags">
+          <span class="t">Live P&amp;L</span><span class="t">Risk Metrics</span><span class="t">Auto-Sync</span><span class="t">Batch Reco</span><span class="t">Fundamentals</span><span class="t">OI Chart</span><span class="t">Option Pick</span>
+        </div>
       </div>
-      <div class="tool-desc">Runs strategies against live data, logs buy/sell signals with reasoning. Walk-forward backtesting and strategy comparison. Signal-only, no execution.</div>
-      <div class="tags"><span class="t">Live Signals</span><span class="t">Backtesting</span><span class="t">Signal Logs</span><span class="t">Comparison</span></div>
-    </div>
-    <div class="tool">
-      <div class="tool-head">
-        <span class="tool-name">IPO Screener</span>
-        <span class="tool-tag">HK IPO analysis</span>
-      </div>
-      <div class="tool-desc">Screens Hong Kong IPO prospectuses for quantitative signals that predict day-1 price appreciation. Backtested on 554 IPOs over 10 years. Runs on a 4-hour scan cycle with Slack alerts.</div>
-      <div class="tags"><span class="t">Prospectus Analysis</span><span class="t">10-Year Backtest</span><span class="t">Signal Extraction</span><span class="t">Slack Alerts</span></div>
-    </div>
 
-    <div class="tool">
-      <div class="tool-head">
-        <span class="tool-name">Social Media Scanner</span>
-        <span class="tool-tag">market-moving posts</span>
+      <div class="tool">
+        <div class="tool-head">
+          <span class="tool-name">[02] Equity Research</span>
+          <span class="tool-tag">→ investment memos</span>
+        </div>
+        <div class="tool-desc">Automated institutional-grade research. Bull/bear price targets, risk/reward analysis. Coverage across US, EU, and HK markets.</div>
+        <div class="tags">
+          <span class="t">Dual Scenarios</span><span class="t">Price Targets</span><span class="t">Multi-Market</span>
+        </div>
       </div>
-      <div class="tool-desc">Monitors financial accounts, news wires, and officials. Scores posts for market impact. Alerts when a post crosses the threshold.</div>
-      <div class="tags"><span class="t">Impact Scoring</span><span class="t">Live Alerts</span><span class="t">Multi-Source</span></div>
-    </div>
 
-    <div class="tool">
-      <div class="tool-head">
-        <span class="tool-name">Macro Sentiment</span>
-        <span class="tool-tag">regime dashboard</span>
+      <div class="tool">
+        <div class="tool-head">
+          <span class="tool-name">[03] Strategy Runner</span>
+          <span class="tool-tag">→ signals &amp; backtesting</span>
+        </div>
+        <div class="tool-desc">Runs strategies against live data, logs buy/sell signals with reasoning. Walk-forward backtesting and strategy comparison. Signal-only, no execution.</div>
+        <div class="tags">
+          <span class="t">Live Signals</span><span class="t">Backtesting</span><span class="t">Signal Logs</span><span class="t">Comparison</span>
+        </div>
       </div>
-      <div class="tool-desc">~40 economic indicators across 9 categories. Classifies market regime (Goldilocks, Reflation, Deflation, Stagflation). Composite score from &minus;100 to +100.</div>
-      <div class="tags"><span class="t">40 Indicators</span><span class="t">Regime Detection</span><span class="t">Sentiment Score</span></div>
-    </div>
 
-    <div class="tool">
-      <div class="tool-head">
-        <span class="tool-name">GEX Bot</span>
-        <span class="tool-tag">discord bot</span>
+      <div class="tool">
+        <div class="tool-head">
+          <span class="tool-name">[04] IPO Screener</span>
+          <span class="tool-tag">→ HK IPO analysis</span>
+        </div>
+        <div class="tool-desc">Screens Hong Kong IPO prospectuses for quantitative signals that predict day-1 price appreciation. Backtested on a decade of IPOs. Runs on a 4-hour scan cycle with Slack alerts.</div>
+        <div class="tags">
+          <span class="t">Prospectus Analysis</span><span class="t">10-Year Backtest</span><span class="t">Signal Extraction</span><span class="t">Slack Alerts</span>
+        </div>
       </div>
-      <div class="tool-desc">Gamma exposure analysis via Discord. Key levels, flip points, regime shifts with charts. Premium tier with scored trade ideas and alerts.</div>
-      <div class="tags"><span class="t">Discord</span><span class="t">Charts</span><span class="t">Premium Tier</span><span class="t">Alerts</span></div>
-    </div>
 
-    <div class="tool">
-      <div class="tool-head">
-        <span class="tool-name">Ants</span>
-        <span class="tool-tag">flow monitor</span>
+      <div class="tool">
+        <div class="tool-head">
+          <span class="tool-name">[05] Social Media Scanner</span>
+          <span class="tool-tag">→ market-moving posts</span>
+        </div>
+        <div class="tool-desc">Monitors financial accounts, news wires, and officials. Scores posts for market impact. Alerts when a post crosses the threshold.</div>
+        <div class="tags">
+          <span class="t">Impact Scoring</span><span class="t">Live Alerts</span><span class="t">Multi-Source</span>
+        </div>
       </div>
-      <div class="tool-desc">Tracks Asian retail and institutional investor flows across US and HK stocks. Settlement data plus broker-level anomaly detection on HK tickers. Signals backtested over 260+ days. Daily Slack alerts.</div>
-      <div class="tags"><span class="t">Retail & Institutional Flows</span><span class="t">Anomaly Detection</span><span class="t">HK Tickers</span><span class="t">Daily Alerts</span></div>
+
+      <div class="tool">
+        <div class="tool-head">
+          <span class="tool-name">[06] Macro Sentiment</span>
+          <span class="tool-tag">→ regime dashboard</span>
+        </div>
+        <div class="tool-desc">Dozens of economic indicators across 9 categories. Classifies market regime (Goldilocks, Reflation, Deflation, Stagflation). Composite sentiment score.</div>
+        <div class="tags">
+          <span class="t">40 Indicators</span><span class="t">Regime Detection</span><span class="t">Sentiment Score</span>
+        </div>
+      </div>
+
+      <div class="tool">
+        <div class="tool-head">
+          <span class="tool-name">[07] GEX Bot</span>
+          <span class="tool-tag">→ discord bot</span>
+        </div>
+        <div class="tool-desc">Gamma exposure analysis via Discord. Key levels, flip points, regime shifts with charts. Premium tier with scored trade ideas and alerts.</div>
+        <div class="tags">
+          <span class="t">Discord</span><span class="t">Charts</span><span class="t">Premium Tier</span><span class="t">Alerts</span>
+        </div>
+      </div>
+
+      <div class="tool">
+        <div class="tool-head">
+          <span class="tool-name">[08] Ants</span>
+          <span class="tool-tag">→ flow monitor</span>
+        </div>
+        <div class="tool-desc">Tracks Asian retail and institutional investor flows across US and HK stocks. Settlement data plus broker-level anomaly detection on HK tickers. Backtested signals, daily Slack alerts.</div>
+        <div class="tags">
+          <span class="t">Retail &amp; Institutional Flows</span><span class="t">Anomaly Detection</span><span class="t">HK Tickers</span><span class="t">Daily Alerts</span>
+        </div>
+      </div>
     </div>
   </div>
-
-  <footer>
-    <a href="https://www.linkedin.com/in/ruiqi-long-0590371b/" target="_blank" rel="noopener">Get in touch — DM me on LinkedIn</a>
-  </footer>
 </div>
 </body>
 </html>
