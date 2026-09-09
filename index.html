@@ -98,6 +98,18 @@
   .tool:hover { background: linear-gradient(to right, rgba(160, 196, 238, 0.04), transparent); }
   .tool-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px; flex-wrap: wrap; }
   .tool-name { font-size: 14px; color: #f0f4fb; font-weight: 600; }
+  .tool-name a { color: inherit; text-decoration: none; border-bottom: 1px solid #2a3040; transition: color .15s, border-color .15s; }
+  .tool-name a:hover { color: #a0c4ee; border-bottom-color: #a0c4ee; }
+  .tool-live {
+    font-size: 10px;
+    color: #a0c4ee;
+    padding: 2px 8px;
+    border: 1px solid rgba(160, 196, 238, 0.35);
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background .15s;
+  }
+  .tool-live:hover { background: rgba(160, 196, 238, 0.10); }
   .tool-tag { font-size: 11px; color: #5a6578; }
   .tool-desc {
     font-family: 'IBM Plex Sans', sans-serif;
@@ -206,8 +218,9 @@ and financial analysis.</div>
 
       <div class="tool">
         <div class="tool-head">
-          <span class="tool-name">[06] Macro Sentiment</span>
+          <span class="tool-name"><a href="https://frontend-tau-peach-83.vercel.app/" target="_blank" rel="noopener">[06] Macro Sentiment</a></span>
           <span class="tool-tag">→ regime dashboard</span>
+          <a class="tool-live" href="https://frontend-tau-peach-83.vercel.app/" target="_blank" rel="noopener">live ↗</a>
         </div>
         <div class="tool-desc">Dozens of economic indicators across 9 categories. Classifies market regime (Goldilocks, Reflation, Deflation, Stagflation). Composite sentiment score.</div>
         <div class="tags">
